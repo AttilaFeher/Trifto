@@ -6,8 +6,8 @@ export function useChats() {
   const { userId } = useUser();
   const { isLoading, data: chats } = useQuery({
     queryKey: ["user", "chats"],
-    queryFn: () => getChats({ userId }),
+    queryFn: () =>
+      getChats({ userId: userId || "781ff0e0-a8b6-4024-a7a9-d8d499bb38a1" }),
   });
-  console.log(chats);
   return { isLoading, chats };
 }
