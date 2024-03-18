@@ -3,7 +3,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // staleTime: 60 * 1000,
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   return (

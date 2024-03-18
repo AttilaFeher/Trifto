@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useChatMessagesInfo } from "./useChatMessagesInfo";
 import { useCreateChatMessage } from "./useCreateChatMessage";
+import { useUser } from "../authentication/useUser";
 
 function ChatMessages() {
+  const { user } = useUser();
   const { isLoading, chatMessagesInfo } = useChatMessagesInfo();
   const { isCreating, createChatMessage } = useCreateChatMessage();
   const [message, setMessage] = useState("");
 
   function handleMessage() {
-    createChatMessage({ chat_id: 1, created_at: string; id: number; message: string | null; user_id: number | null; });
+    createChatMessage({ chat_id: 1, message, user_id: 1 });
   }
 
   if (!chatMessagesInfo || isLoading || isCreating) return null;
