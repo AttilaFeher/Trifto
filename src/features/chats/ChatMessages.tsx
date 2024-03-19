@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useChatMessagesInfo } from "./useChatMessagesInfo";
 import { useCreateChatMessage } from "./useCreateChatMessage";
-import { useUser } from "../authentication/useUser";
+import { useChatSubscription } from "./useChatSubscription";
 
 function ChatMessages() {
-  const { user } = useUser();
+  useChatSubscription();
   const { isLoading, chatMessagesInfo } = useChatMessagesInfo();
   const { isCreating, createChatMessage } = useCreateChatMessage();
   const [message, setMessage] = useState("");

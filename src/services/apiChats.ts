@@ -16,19 +16,7 @@ export async function getChatMessagesInfo({ chatId }: { chatId: string }) {
     .select("*")
     .eq("chat_id", chatId);
 
-  const chatMessages = supabase
-    .channel("custom-all-channel")
-    .on(
-      "postgres_changes",
-      { event: "*", schema: "public", table: "chat_messages" },
-      (payload) => {
-        console.log("Change received!", payload);
-      }
-    )
-    .subscribe();
-  // console.log(chatMessages);
-
-  return { data, error, chatMessages };
+  return { data, error };
 }
 
 type CreateChatMessageType = {
@@ -45,4 +33,17 @@ export async function createChatMessage({
     .select();
 
   return { data, error };
+}
+
+export async function chatSubscription(resetQuery: () => Promise<void>) {
+  const subscription = supabase
+    .channel("custom-all-channel")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "chat_messages" },
+      resetQuery
+    )
+    .subscribe();
+
+  return subscription;
 }

@@ -2,6 +2,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
+import Chats from "./pages/Chats";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,10 +19,22 @@ function App() {
   return (
     <div>
       <QueryClientProvider client={queryClient}>
-        {/* <ProtectedRoute> */}
-        <Login />
-        {/* </ProtectedRoute> */}
         <ReactQueryDevtools initialIsOpen={false} />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="chats" />} />
+              <Route path="chats" element={<Chats />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
       </QueryClientProvider>
     </div>
   );

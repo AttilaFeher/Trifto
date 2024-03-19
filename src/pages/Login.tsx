@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useLogin } from "../features/authentication/useLogin";
-import Chats from "./Chats";
 
 function Login() {
-  const [click, setClick] = useState(false);
   const { login, isLoading } = useLogin();
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("123123");
@@ -15,8 +13,8 @@ function Login() {
       onSubmit={(e) => {
         e.preventDefault();
         login({ email, password });
-        setClick(true);
-      }}>
+      }}
+    >
       <input
         value={email}
         type="text"
@@ -28,7 +26,6 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">s</button>
-      {click && <Chats />}
     </form>
   );
 }
