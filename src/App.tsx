@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Chats from "./pages/Chats";
+import NewProduct from "./pages/NewProduct";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,7 @@ function App() {
             >
               <Route index element={<Navigate replace to="chats" />} />
               <Route path="chats" element={<Chats />} />
+              <Route path="newproduct" element={<NewProduct />} />
             </Route>
             <Route path="login" element={<Login />} />
           </Routes>
