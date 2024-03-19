@@ -19,7 +19,7 @@ function App() {
         {/* <ProtectedRoute> */}
         <Login />
         {/* </ProtectedRoute> */}
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </div>
   );
