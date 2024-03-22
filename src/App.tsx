@@ -1,13 +1,15 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Login from './pages/Login';
+
 import ProtectedRoute from './components/ProtectedRoute';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/AppLayout';
 import Chats from './pages/Chats';
-import NewProduct from './pages/NewProduct';
 import Products from './pages/Products';
-import { Toaster } from 'react-hot-toast';
+import NewProduct from './pages/NewProduct';
+import ChatMessages from './features/chats/ChatMessages';
+import Login from './pages/Login';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +35,9 @@ function App() {
               }
             >
               <Route index element={<Navigate replace to="chats" />} />
-              <Route path="chats" element={<Chats />} />
+              <Route path="chats" element={<Chats />}>
+                <Route path=":chatId" element={<ChatMessages />} />
+              </Route>
               <Route path="products/new" element={<NewProduct />} />
             </Route>
             <Route element={<AppLayout />}>

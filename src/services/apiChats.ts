@@ -1,20 +1,22 @@
-import { ChatMessageType } from "../types/collection";
-import supabase from "./supabase";
+import { ChatMessageType } from '../types/collection';
+import supabase from './supabase';
 
 export async function getChats({ userId }: { userId: string | undefined }) {
   if (!userId) return null;
 
-  const { data, error } = await supabase.from("chat_summary").select("*");
-  // .eq("user_ids", userId);
+  const { data, error } = await supabase
+    .from('chat_summary')
+    .select('*')
+    .contains('user_ids', [userId]);
 
   return { data, error };
 }
 
 export async function getChatMessagesInfo({ chatId }: { chatId: string }) {
   const { data, error } = await supabase
-    .from("chat_messages_info_view")
-    .select("*")
-    .eq("chat_id", chatId);
+    .from('chat_messages_info_view')
+    .select('*')
+    .eq('chat_id', chatId);
 
   return { data, error };
 }
@@ -28,7 +30,7 @@ export async function createChatMessage({
 }: CreateChatMessageType) {
   console.log(messageDetail);
   const { data, error } = await supabase
-    .from("chat_messages")
+    .from('chat_messages')
     .insert([messageDetail])
     .select();
 
@@ -37,11 +39,11 @@ export async function createChatMessage({
 
 export async function chatSubscription(resetQuery: () => Promise<void>) {
   const subscription = supabase
-    .channel("custom-all-channel")
+    .channel('custom-all-channel')
     .on(
-      "postgres_changes",
-      { event: "*", schema: "public", table: "chat_messages" },
-      resetQuery
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'chat_messages' },
+      resetQuery,
     )
     .subscribe();
 

@@ -1,16 +1,11 @@
-import ChatMessages from "../features/chats/ChatMessages";
-import { useChats } from "../features/chats/useChats";
+import { Outlet } from 'react-router-dom';
+import AllChats from '../features/chats/AllChats';
 
 function Chats() {
-  const { isLoading, chats } = useChats();
-  console.log(chats);
-
-  if (!chats?.data || isLoading) return null;
-
   return (
-    <div>
-      {chats.data[0].nicknames}
-      <ChatMessages />
+    <div className="flex">
+      <AllChats />
+      <Outlet />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase from './supabase';
 
 export type LoginType = {
   email: string;
@@ -10,6 +10,17 @@ export async function login({ email, password }: LoginType) {
     email,
     password,
   });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+export async function getUserInfo(userId: string) {
+  const { data, error } = await supabase
+    .from('users_info')
+    .select('*')
+    .eq('user_id', userId)
+    .single();
 
   if (error) throw new Error(error.message);
 

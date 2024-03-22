@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { getChatMessagesInfo } from "../../services/apiChats";
+import { useQuery } from '@tanstack/react-query';
+import { getChatMessagesInfo } from '../../services/apiChats';
 
-export function useChatMessagesInfo() {
+export function useChatMessagesInfo(chatId: string) {
   const { isLoading, data: chatMessagesInfo } = useQuery({
-    queryKey: ["user", "chats", "1"],
+    queryKey: ['user', 'chats', chatId],
     queryFn: () =>
       getChatMessagesInfo({
-        chatId: "1",
+        chatId: chatId,
       }),
   });
   return { isLoading, chatMessagesInfo };

@@ -1,19 +1,31 @@
-import { useState } from "react";
-import { useChatMessagesInfo } from "./useChatMessagesInfo";
-import { useCreateChatMessage } from "./useCreateChatMessage";
-import { useChatSubscription } from "./useChatSubscription";
+import { useState } from 'react';
+import { useChatMessagesInfo } from './useChatMessagesInfo';
+import { useCreateChatMessage } from './useCreateChatMessage';
+import { useChatSubscription } from './useChatSubscription';
+import { useParams } from 'react-router-dom';
+import { ChatMessageType } from '../../types/collection';
+import { useUserInfo } from '../authentication/useUserInfo';
 
 function ChatMessages() {
-  useChatSubscription();
-  const { isLoading, chatMessagesInfo } = useChatMessagesInfo();
-  const { isCreating, createChatMessage } = useCreateChatMessage();
-  const [message, setMessage] = useState("");
+  const { chatId } = useParams() as { chatId: string };
+  useChatSubscription(chatId);
+  const { isLoading, chatMessagesInfo } = useChatMessagesInfo(chatId);
+  const { isCreating, createChatMessage } = useCreateChatMessage(chatId);
+  const { isLoading: isLoadingUser, userInfo } = useUserInfo();
+  const [message, setMessage] = useState('');
+
+  if (!chatMessagesInfo || isLoading || isLoadingUser) return null;
 
   function handleMessage() {
-    createChatMessage({ chat_id: 1, message, user_id: 1 });
-  }
+    if (!userInfo?.id || !message) return;
 
-  if (!chatMessagesInfo || isLoading || isCreating) return null;
+    const newMessage = {
+      chat_id: +chatId,
+      user_id: userInfo.id,
+      message,
+    } as ChatMessageType;
+    createChatMessage(newMessage);
+  }
 
   return (
     <div>
