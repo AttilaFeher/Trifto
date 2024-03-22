@@ -5,18 +5,14 @@ import ButtonGroup from './ButtonGroup';
 import HeaderNav from './HeaderNav';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import { useLogout } from '../features/authentication/useLogout';
 import Logout from '../features/authentication/Logout';
 
 function Header() {
   const { isAuthenticated } = useUser();
-  const { logout, isPending } = useLogout();
-
-  if (isPending) return null;
 
   return (
-    <header>
-      <div className="flex">
+    <>
+      <header className="mx-auto flex h-24 max-w-[1600px] items-center justify-between  px-4">
         <Logo />
         <SearchBar />
         {isAuthenticated ? (
@@ -31,9 +27,9 @@ function Header() {
             </Button>
           </ButtonGroup>
         )}
-      </div>
+      </header>
       <HeaderNav />
-    </header>
+    </>
   );
 }
 

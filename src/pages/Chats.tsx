@@ -3,7 +3,7 @@ import AllChats from '../features/chats/AllChats';
 
 function Chats() {
   return (
-    <div className="flex">
+    <div>
       <AllChats />
       <Outlet />
     </div>

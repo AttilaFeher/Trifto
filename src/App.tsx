@@ -34,7 +34,7 @@ function App() {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<Navigate replace to="chats" />} />
+              <Route index element={<Navigate replace to="products" />} />
               <Route path="chats" element={<Chats />}>
                 <Route path=":chatId" element={<ChatMessages />} />
               </Route>

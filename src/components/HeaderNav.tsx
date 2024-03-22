@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function HeaderNav() {
   return (
     <nav>
-      <ul>
+      <ul className="flex">
         <li>
           <Link to="">Women</Link>
         </li>
