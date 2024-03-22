@@ -7,6 +7,7 @@ import Logo from './Logo';
 import SearchBar from './SearchBar';
 import { useLogout } from '../features/authentication/useLogout';
 import Logout from '../features/authentication/Logout';
+import { RiAccountCircleLine } from 'react-icons/ri';
 
 function Header() {
   const { isAuthenticated } = useUser();
@@ -15,24 +16,21 @@ function Header() {
   if (isPending) return null;
 
   return (
-    <header>
-      <div className="flex">
-        <Logo />
-        <SearchBar />
-        {isAuthenticated ? (
-          <Logout />
-        ) : (
-          <ButtonGroup>
-            <Button variation="secondary">
-              <Link to="login">Log In</Link>
-            </Button>
-            <Button variation="primary">
-              <Link to="signup">Sign Up</Link>
-            </Button>
-          </ButtonGroup>
-        )}
-      </div>
-      <HeaderNav />
+    <header className="mx-auto flex h-24 max-w-[1600px] items-center justify-between  px-4">
+      <Logo />
+      <SearchBar />
+      {isAuthenticated ? (
+        <Logout />
+      ) : (
+        <ButtonGroup>
+          <Button variation="secondary">
+            <Link to="login">Log In</Link>
+          </Button>
+          <Button variation="primary">
+            <Link to="signup">Sign Up</Link>
+          </Button>
+        </ButtonGroup>
+      )}
     </header>
   );
 }

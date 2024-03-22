@@ -1,5 +1,6 @@
-import ChatMessages from "../features/chats/ChatMessages";
-import { useChats } from "../features/chats/useChats";
+import Hero from '../components/Hero';
+import ChatMessages from '../features/chats/ChatMessages';
+import { useChats } from '../features/chats/useChats';
 
 function Chats() {
   const { isLoading, chats } = useChats();
@@ -9,6 +10,7 @@ function Chats() {
 
   return (
     <div>
+      <Hero></Hero>
       {chats.data[0].nicknames}
       <ChatMessages />
     </div>
