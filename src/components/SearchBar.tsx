@@ -11,7 +11,7 @@ function SearchBar() {
   return (
     <div className="relative text-black">
       <Input
-        placeholder="Search..."
+        placeholder="Pretraga..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />

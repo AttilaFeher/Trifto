@@ -9,11 +9,12 @@ function Hero() {
     <div className="backgroundHero">
       <div className="mx-auto flex max-w-[1280px] flex-col text-white">
         <h1 className="text-6xl font-bold">
-          Style Resold, <br></br>Stories Retold.
+          Korak Po Korak do<br></br> Savršenog Garderobera
         </h1>
         <p className="w-1/2 text-xl ">
-          Explore and sell stylish clothes easily on our online store. Discover
-          the latest fashion trends or showcase your own designs effortlessly.
+          Istražite i prodajte stilizovanu odeću lako na našoj online
+          prodavnici. Otkrijte najnovije modne trendove ili jednostavno
+          predstavite svoje sopstvene dizajne.
         </p>
         <ButtonGroup>
           {isAuthenticated ? (
