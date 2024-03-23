@@ -41,3 +41,10 @@ button {
   margin: 0;
   align-items: center;
 }
+.logout-button {
+  display: none;
+}
+
+#hover-container:hover .logout-button {
+  display: inline-block;
+}
