@@ -10,3 +10,6 @@ export type ChatUsersType = Database['public']['Tables']['chat_users']['Row'];
 // Views
 export type ChatSummaryViewType =
   Database['public']['Views']['chat_summary']['Row'];
+
+export type ChatMessageInfoViewType =
+  Database['public']['Views']['chat_messages_info_view']['Row'];

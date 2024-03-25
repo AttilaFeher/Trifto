@@ -7,11 +7,45 @@ function AllChats() {
   if (!chats?.data || isLoading) return null;
 
   return (
-    <ul>
-      {chats.data.map((chat) => (
-        <ChatItem key={chat.chat_id} chat={chat} />
-      ))}
-    </ul>
+    <div className="h-full basis-64 overflow-auto">
+      <ul className="border-r-2">
+        {chats.data.map((chat) => (
+          <ChatItem key={chat.chat_id} chat={chat} />
+        ))}
+        <div>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+        </div>
+      </ul>
+    </div>
   );
 }
 

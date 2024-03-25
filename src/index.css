@@ -26,25 +26,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-button {
-  padding: 10px 20px;
-  border: 1px solid black;
-}
-.backgroundHero {
-  background-image: url('../src/assets/HeroImage.png');
-  height: 512px;
-  display: flex;
-  margin: 0;
-  align-items: center;
-}
-.logout-button {
+
+/* .logout-button {
   display: none;
 }
 
 #hover-container:hover .logout-button {
   display: inline-block;
+} */
+
+.chats {
+  height: calc(100dvh - 6rem);
 }

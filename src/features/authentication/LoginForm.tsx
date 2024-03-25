@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useLogin } from './useLogin';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 function LoginForm() {
   const { login, isPending } = useLogin();
@@ -17,14 +18,15 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <Input
+        placeholder="ime@gmail.com"
         value={email}
-        type="text"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <Input
+        placeholder="password"
         value={password}
-        type="text"
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <Button variation="primary" type="submit">
