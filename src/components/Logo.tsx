@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
+import Heading from './Heading';
 
 function Logo() {
   return (
     <div className="flex items-center">
-      <Link to="/" className="flex items-center">
-        <img src="../src/assets/triftologo.svg" alt="" className="h-16" />
-        <h1 className="text-4xl font-bold">Trifto</h1>
+      <Link to="/products" className="flex items-center">
+        <img
+          src="../src/assets/triftologo.svg"
+          alt="Logo image"
+          className="h-16"
+        />
+        <Heading type="h2">Trifto</Heading>
       </Link>
     </div>
   );
