@@ -1,7 +1,7 @@
 import { ChildrenType } from '../types/reusableTypes';
 
 function Main({ children }: ChildrenType) {
-  return <div className="mx-auto mb-64 px-10">{children}</div>;
+  return <main className="mx-auto px-10">{children}</main>;
 }
 
 export default Main;

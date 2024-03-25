@@ -6,7 +6,7 @@ import HeaderNav from './HeaderNav';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
 import Logout from '../features/authentication/Logout';
-import { FaRegUserCircle } from 'react-icons/fa';
+import { FaHome, FaRegUserCircle } from 'react-icons/fa';
 import { BsFillHeartFill } from 'react-icons/bs';
 import { FaAngleDown } from 'react-icons/fa';
 import { MdCreateNewFolder, MdMail } from 'react-icons/md';
@@ -15,11 +15,14 @@ function Header() {
   const { isAuthenticated } = useUser();
 
   return (
-    <header className="mx-3 flex h-24 items-center justify-between  px-4">
+    <header className="mx-3 flex h-24 items-center justify-between px-4">
       <Logo />
       <SearchBar />
       {isAuthenticated ? (
         <div className="flex flex-row items-center gap-4">
+          <Link to="products">
+            <FaHome className="h-[34px] w-[34px] cursor-pointer hover:text-green-300" />
+          </Link>
           <Link to="chats">
             <MdMail className="h-[34px] w-[34px] cursor-pointer hover:text-green-300" />
           </Link>

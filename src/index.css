@@ -34,3 +34,7 @@
 #hover-container:hover .logout-button {
   display: inline-block;
 } */
+
+.chats {
+  height: calc(100dvh - 6rem);
+}

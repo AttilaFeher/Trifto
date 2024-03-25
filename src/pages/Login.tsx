@@ -4,7 +4,9 @@ function Login() {
   return (
     <div className="flex">
       <LoginForm />
-      Image of girl
+      <div>
+        <img src="../../public/HeroImage.png" />
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import AllChats from '../features/chats/AllChats';
 
 function Chats() {
   return (
-    <div>
+    <div className="chats flex border-t-2 border-gray-400 pb-6">
       <AllChats />
       <Outlet />
     </div>

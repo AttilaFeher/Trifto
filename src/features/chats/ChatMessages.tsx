@@ -5,6 +5,9 @@ import { useChatSubscription } from './useChatSubscription';
 import { useParams } from 'react-router-dom';
 import { ChatMessageType } from '../../types/collection';
 import { useUserInfo } from '../authentication/useUserInfo';
+import Input from '../../components/Input';
+import { IoSend } from 'react-icons/io5';
+import ChatMessage from '../../components/ChatMessage';
 
 function ChatMessages() {
   const { chatId } = useParams() as { chatId: string };
@@ -28,20 +31,54 @@ function ChatMessages() {
   }
 
   return (
-    <div>
-      {chatMessagesInfo.data?.map((message) => (
-        <p key={message.created_at}>
-          <span>{message.nickname} </span>
-          <br></br>
-          {message.message}
-        </p>
-      ))}
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={handleMessage}>send message</button>
+    <div className="relative h-full basis-full">
+      <div className="h-full overflow-auto pb-14">
+        {chatMessagesInfo.data?.map((message) => (
+          <ChatMessage key={message.created_at} message={message} />
+        ))}
+        {/* <div>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+          <li>aawd</li>
+        </div> */}
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 z-10 flex">
+        <Input
+          placeholder="Poruka..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button onClick={handleMessage}>
+          <IoSend />
+        </button>
+      </div>
     </div>
   );
 }
