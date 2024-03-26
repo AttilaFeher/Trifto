@@ -8,12 +8,12 @@ function Hero() {
   const { isAuthenticated } = useUser();
   return (
     <div
-      className="flex h-[32rem] items-center rounded-sm bg-no-repeat"
+      className=" flex h-[32rem] items-center rounded-sm bg-no-repeat"
       style={{ backgroundImage: 'url(../../public/HeroImage.png)' }}
     >
       <div className="mx-auto flex max-w-[1280px] flex-col text-white">
         <div className="px-10">
-          <Heading type="h1" className="pb-12">
+          <Heading type="h1" className="pb-6">
             Korak Po Korak do <br /> Savršenog Garderobera
           </Heading>
           <p className="w-1/2 pb-8 text-xl">
