@@ -8,6 +8,7 @@ import { useUserInfo } from '../authentication/useUserInfo';
 import Input from '../../components/Input';
 import { IoSend } from 'react-icons/io5';
 import ChatMessage from '../../components/ChatMessage';
+import InputBarProvider from '../../components/InputBarProvider';
 
 function ChatMessages() {
   const { chatId } = useParams() as { chatId: string };
@@ -32,7 +33,7 @@ function ChatMessages() {
 
   return (
     <div className="relative h-full basis-full">
-      <div className="h-full overflow-auto pb-14">
+      <div className="h-full overflow-y-auto pb-14">
         {chatMessagesInfo.data?.map((message) => (
           <ChatMessage key={message.created_at} message={message} />
         ))}
@@ -69,15 +70,18 @@ function ChatMessages() {
           <li>aawd</li>
         </div> */}
       </div>
-      <div className="absolute bottom-0 left-0 right-0 z-10 flex">
-        <Input
-          placeholder="Poruka..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button onClick={handleMessage}>
-          <IoSend />
-        </button>
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-white">
+        <InputBarProvider>
+          <Input
+            placeholder="Poruka..."
+            value={message}
+            variation="secondary"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <InputBarProvider.Icon onClick={handleMessage}>
+            <IoSend />
+          </InputBarProvider.Icon>
+        </InputBarProvider>
       </div>
     </div>
   );
