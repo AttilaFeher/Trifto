@@ -2,8 +2,8 @@ import { useUser } from '../features/authentication/useUser';
 import { ChatMessageInfoViewType } from '../types/collection';
 
 const messageVariation = {
-  main: 'ml-auto', // My message
-  another: 'mr-auto', // Another user message
+  main: 'ml-auto',
+  another: 'mr-auto',
 };
 
 type ChatMessageType = {

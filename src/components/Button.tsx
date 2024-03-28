@@ -11,6 +11,7 @@ const buttonStyles = {
 type ButtonType = {
   variation: 'primary' | 'secondary' | 'icon';
   type?: 'submit';
+  className?: string;
   onClick?: () => void;
   isDisable?: boolean;
   children: ReactNode;
@@ -21,12 +22,12 @@ function Button({
   onClick,
   type,
   isDisable = false,
+  className,
   children,
 }: ButtonType) {
-  console.log(isDisable);
   return (
     <button
-      className={`${buttonStyles[variation]}`}
+      className={`${buttonStyles[variation]} ${className}`}
       onClick={onClick}
       type={type}
       disabled={isDisable}

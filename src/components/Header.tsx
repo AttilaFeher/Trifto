@@ -15,7 +15,7 @@ function Header() {
   const { isAuthenticated } = useUser();
   console.log(isAuthenticated);
   return (
-    <header className="mx-3 flex h-24 items-center justify-between gap-7 px-4">
+    <header className="mx-8 flex h-24 items-center justify-between gap-7 px-4">
       <Logo />
       <SearchBar />
       {isAuthenticated ? (
