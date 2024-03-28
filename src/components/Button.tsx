@@ -11,14 +11,15 @@ const buttonStyles = {
 type ButtonType = {
   variation: 'primary' | 'secondary' | 'icon';
   type?: 'submit';
+  className?: string;
   onClick?: () => void;
   children: ReactNode;
 };
 
-function Button({ variation, onClick, type, children }: ButtonType) {
+function Button({ variation, onClick, type, className, children }: ButtonType) {
   return (
     <button
-      className={`${buttonStyles[variation]}`}
+      className={`${buttonStyles[variation]} ${className}`}
       onClick={onClick}
       type={type}
     >

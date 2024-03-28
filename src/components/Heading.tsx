@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 type HeadingType = {
   type: 'h1' | 'h2';
-  className: string;
+  className?: string;
   children: ReactNode;
 };
 
