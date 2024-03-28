@@ -11,7 +11,6 @@ type ChatMessageType = {
 };
 
 function ChatMessage({ message }: ChatMessageType) {
-  console.log(message);
   const { userId } = useUser();
   return (
     <p
