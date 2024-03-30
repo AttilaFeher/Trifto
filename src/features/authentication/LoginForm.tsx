@@ -2,104 +2,92 @@ import { FormEvent, useState } from 'react';
 import { useLogin } from './useLogin';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { Link, useLocation } from 'react-router-dom';
+import { useSignup } from './useSignup';
+import LineText from '../../components/LineText';
+import toast from 'react-hot-toast';
+import FormRowVertical from '../../components/FormRowVertical';
+import { useLoginGoogle } from './useLoginGoogle';
 
 function LoginForm() {
-  const { login, isPending } = useLogin();
+  const { pathname } = useLocation();
+  const isSignup = pathname === '/signup';
+  const { login, isLogging } = useLogin();
+  const { loginGoogle, isLogging: isLoggingGoogle } = useLoginGoogle();
+  const { signup, isPending } = useSignup();
   const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('123123');
-
-  if (isPending) return;
+  const [passwordConfirm, setPasswordConfirm] = useState('123123');
+  const isLoading = isLogging || isPending || isLoggingGoogle;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email || !password) return;
-    login({ email, password });
+
+    if (!email || !password)
+      return toast.error('Uneli ste neispravan mail ili lozinku!');
+
+    const userEmailPass = { email, password };
+    if (!isSignup) {
+      login(userEmailPass);
+    } else {
+      if (password !== passwordConfirm) toast.error('Unesite iste lozinke!');
+      else signup(userEmailPass);
+    }
   }
 
   return (
-    // <form className="max-w-sm">
-    //   <div className="mb-5">
-    //     <label
-    //       htmlFor="email"
-    //       className="text-gray-90 mb-2 block text-sm font-medium"
-    //     >
-    //       Vaša email adresa
-    //     </label>
-    //     <input
-    //       type="email"
-    //       id="email"
-    //       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600  dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-    //       placeholder="ime@domen.com"
-    //       required
-    //     />
-    //   </div>
-    //   <div className="mb-5">
-    //     <label className="text-gray- mb-2 block text-sm font-medium">
-    //       Vaša lozinka
-    //     </label>
-    //     <input
-    //       type="password"
-    //       id="password"
-    //       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600  dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-    //       required
-    //     />
-    //   </div>
-    //   <div className="mb-5 flex items-start">
-    //     <div className="flex h-5 items-center">
-    //       <input
-    //         id="remember"
-    //         type="checkbox"
-    //         value=""
-    //         className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
-    //         required
-    //       />
-    //     </div>
-    //     <label
-    //       htmlFor="remember"
-    //       className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-    //     >
-    //       Zapamti me
-    //     </label>
-    //   </div>
-    //   <button
-    //     type="submit"
-    //     className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    //   >
-    //     Potvrdi
-    //   </button>
-    // </form>
-
     <form onSubmit={handleSubmit}>
-      <label>Ime</label>
-      <Input
-        placeholder="ime@gmail.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label className="mt-2 block">Lozinka</label>
-      <Input
-        placeholder="password"
-        value={password}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <FormRowVertical label="Ime:">
+        <Input
+          placeholder="ime@gmail.com"
+          value={email}
+          id="name"
+          disabled={isLoading}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Lozinka:">
+        <Input
+          placeholder="password"
+          value={password}
+          type="password"
+          id="password"
+          disabled={isLoading}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormRowVertical>
+      {isSignup && (
+        <FormRowVertical label="Potvrdi lozinku:">
+          <Input
+            placeholder="password"
+            value={passwordConfirm}
+            type="password"
+            id="passwordConfirm"
+            disabled={isLoading}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </FormRowVertical>
+      )}
       <input className="mt-4 inline-block" type="checkbox"></input> Ostani
       priljavjen/a
-      <div className="align-center flex flex-col items-center">
-        <div className="mt-4 w-full">
-          <Button type="submit" variation="primary" className="w-full">
-            Uloguj se
-          </Button>
-        </div>
-        <div className="mb-2 mt-2 flex items-center gap-4">
-          <span className="h-[2px] w-[228px] bg-gray-500"></span> ili
-          <span className="h-[2px] w-[228px] bg-gray-500"> </span>
-        </div>
+      <div className="align-center mt-4 flex flex-col items-center">
+        <Button
+          type="submit"
+          variation="primary"
+          className="w-full"
+          isDisable={isLoading}
+        >
+          Prijavi se
+        </Button>
+        <LineText>ili</LineText>
         <Button
           variation="secondary"
+          type="button"
           className="mx-auto mt-2 flex w-full items-center justify-center gap-4"
+          isDisable={isLoading}
+          onClick={loginGoogle}
         >
-          Uloguj se sa googleom{' '}
+          Uloguj se preko googla
           <svg
             className="h-[32px] w-[32px]"
             xmlns="http://www.w3.org/2000/svg"
@@ -127,11 +115,23 @@ function LoginForm() {
             ></path>
           </svg>
         </Button>
+
         <p className="mt-8">
-          Potrebna vam je nalog?{' '}
-          <span className="text-blue-500">
-            <a href="signup">Napravite ga</a>
-          </span>
+          {!isSignup ? (
+            <>
+              Potrebna vam je nalog?
+              <span className="text-blue-500">
+                &nbsp;&nbsp;<Link to="/signup">Napravite nalog</Link>
+              </span>
+            </>
+          ) : (
+            <>
+              Imate postojeći nalog?
+              <span className="text-blue-500">
+                &nbsp;&nbsp;<Link to="/login">Logujte se</Link>
+              </span>
+            </>
+          )}
         </p>
       </div>
     </form>

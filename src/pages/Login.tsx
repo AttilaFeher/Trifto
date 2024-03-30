@@ -5,7 +5,7 @@ function Login() {
   return (
     <div className="text mx-auto mt-12 flex w-[1024px] items-center shadow-xl">
       <div className="flex-col p-8">
-        <Heading type="h2">Uloguj Se</Heading>
+        <Heading type="h2">Prijavi</Heading>
         <p className="mb-4 mt-2">
           Molimo vas da se prijavite kako biste nastavili sa svojim nalogom.
         </p>

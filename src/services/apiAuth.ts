@@ -15,6 +15,28 @@ export async function login({ email, password }: LoginType) {
 
   return data;
 }
+
+export async function signup({ email, password }: LoginType) {
+  let { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export async function loginGoogle() {
+  let { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
 export async function getUserInfo(userId: string) {
   const { data, error } = await supabase
     .from('users_info')

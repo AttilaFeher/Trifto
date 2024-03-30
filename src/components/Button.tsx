@@ -10,7 +10,7 @@ const buttonStyles = {
 
 type ButtonType = {
   variation: 'primary' | 'secondary' | 'icon';
-  type?: 'submit';
+  type?: 'submit' | 'button';
   className?: string;
   onClick?: () => void;
   isDisable?: boolean;

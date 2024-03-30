@@ -11,16 +11,20 @@ type InputType = {
   placeholder: string;
   value: string;
   type?: 'text' | 'password';
+  id?: string;
   variation?: 'primary' | 'secondary';
+  disabled?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 function Input({
   placeholder,
   value,
-  onChange,
   type = 'text',
+  id,
   variation = 'primary',
+  disabled = false,
+  onChange,
 }: InputType) {
   return (
     <input
@@ -28,6 +32,8 @@ function Input({
       type={type}
       placeholder={placeholder}
       value={value}
+      id={id}
+      disabled={disabled}
       onChange={onChange}
     />
   );
