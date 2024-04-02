@@ -24,20 +24,20 @@ function Hero() {
           <ButtonGroup>
             {isAuthenticated ? (
               <ButtonGroup>
-                <Button variation="secondary">
-                  <Link to="">Nesto...</Link>
-                </Button>
                 <Button variation="primary">
-                  <Link to="/chats">Contact</Link>
+                  <Link to="/newProduct">Prodaj nešto</Link>
+                </Button>
+                <Button variation="secondary">
+                  <Link to="/">Kupi nešto</Link>
                 </Button>
               </ButtonGroup>
             ) : (
               <>
                 <Button variation="secondary">
-                  <Link to="/login">Log In</Link>
+                  <Link to="/login">Prodaj nešto</Link>
                 </Button>
                 <Button variation="primary">
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signup">Kupi nešto</Link>
                 </Button>
               </>
             )}

@@ -9,10 +9,13 @@ function ChatMessageName() {
   const chatUsers = chats.data.find((chat) => chat.chat_id === +chatId);
 
   return (
-    <div className="absolute left-0 right-0 top-0 z-10 border-b-2 border-gray-300 bg-slate-200">
-      <div className="px-2 py-3 leading-tight text-gray-800  ">
-        <p>
-          Chat with:{' '}
+    <div className="absolute left-0 right-0 top-0 z-10 mr-4 bg-white shadow-lg">
+      <div className="py-3 pl-8 leading-tight text-gray-800  ">
+        <p className="flex items-center gap-2">
+          <img
+            src="../public/default.jpg"
+            className="h-[54px] w-[54px] rounded-full"
+          ></img>{' '}
           <span className="font-medium">
             {chatUsers?.nicknames?.join(', ')}
           </span>

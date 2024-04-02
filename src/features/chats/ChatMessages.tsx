@@ -15,42 +15,10 @@ function ChatMessages() {
   return (
     <div className="relative h-full basis-full">
       <ChatMessageName />
-      <div className="h-full overflow-y-auto py-14">
+      <div className="h-full overflow-y-auto pb-28 pt-20 ">
         {chatMessagesInfo.data?.map((message) => (
           <ChatMessage key={message.created_at} message={message} />
         ))}
-        {/* <div>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-        </div> */}
       </div>
       <ChatMessageInput />
     </div>

@@ -27,7 +27,7 @@ function ChatMessageInput() {
   }
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 z-10 bg-white">
+    <div className="absolute bottom-0 left-0 right-0 z-10 bg-white pt-8">
       <InputBarProvider>
         <Input
           placeholder="Poruka..."

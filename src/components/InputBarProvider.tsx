@@ -7,7 +7,7 @@ const InputBarContext = createContext(null);
 function InputBarProvider({ children }: ChildrenType) {
   return (
     <InputBarContext.Provider value={null}>
-      <div className="mx-4 w-full">
+      <div className="w-full">
         <div className="mx-auto flex max-w-[40rem] appearance-none items-center gap-4 rounded-md border-2 border-gray-300 px-2 py-2 leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:outline-none focus:ring-gray-600">
           {children}
         </div>
