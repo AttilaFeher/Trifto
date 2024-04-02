@@ -1,11 +1,10 @@
 import { ProductsInsertType } from '../types/collection';
 import supabase from './supabase';
 
-export async function getProducts({ userId }: { userId: string }) {
-  let { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('user_id', userId);
+// export async function getProducts({ userId }: { userId: string }) {
+export async function getProducts() {
+  let { data, error } = await supabase.from('products').select('*');
+  // .eq('user_id', userId);
 
   return { data, error };
 }

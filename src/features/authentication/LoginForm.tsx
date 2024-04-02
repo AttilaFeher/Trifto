@@ -70,7 +70,7 @@ function LoginForm() {
       )}
       <input className="mt-4 inline-block" type="checkbox"></input> Ostani
       priljavjen/a
-      <div className="align-center mt-4 flex flex-col items-center">
+      <div className="mt-4 flex flex-col items-center">
         <Button
           type="submit"
           variation="primary"

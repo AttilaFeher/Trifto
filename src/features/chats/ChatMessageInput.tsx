@@ -24,11 +24,12 @@ function ChatMessageInput() {
       message,
     } as ChatMessageType;
     createChatMessage(newMessage);
+    setMessage('');
   }
 
   return (
     <div className="absolute bottom-0 left-0 right-0 z-10 bg-white">
-      <InputBarProvider>
+      <InputBarProvider onSubmit={handleMessage}>
         <Input
           placeholder="Poruka..."
           value={message}

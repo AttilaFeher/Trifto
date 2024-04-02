@@ -44,10 +44,10 @@ function Header() {
       ) : (
         <ButtonGroup>
           <Button variation="secondary">
-            <Link to="login">Log In</Link>
+            <Link to="/login">Log In</Link>
           </Button>
           <Button variation="primary">
-            <Link to="signup">Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
           </Button>
         </ButtonGroup>
       )}

@@ -7,7 +7,6 @@ type HeadingType = {
 };
 
 function Heading({ type, children, className = '' }: HeadingType) {
-  console.log(className);
   if (type === 'h1')
     return (
       <h1 className={`text-3.2xl  text-6xl font-bold ${className}`}>
