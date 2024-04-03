@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSignup } from './useSignup';
 import LineText from '../../components/LineText';
 import toast from 'react-hot-toast';
-import FormRowVertical from '../../components/FormRowVertical';
+import FormRowVertical from '../../components/FormRow';
 import { useLoginGoogle } from './useLoginGoogle';
 
 function LoginForm() {

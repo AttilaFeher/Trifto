@@ -21,8 +21,8 @@ export function useChats() {
     // },
   });
 
-  if (isSuccess && chats?.data) {
-    navigate(`${chats?.data[0].chat_id}`);
-  }
+  // if (isSuccess && chats?.data) {
+  //   navigate(`${chats?.data[0].chat_id}`);
+  // }
   return { isLoading, chats };
 }
