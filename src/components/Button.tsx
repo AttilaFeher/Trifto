@@ -4,7 +4,7 @@ const buttonStyles = {
   primary:
     'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-5 rounded  border-none', //Blue
   secondary:
-    'bg-neutral-200 opacity-70 hover:bg-neutral-500 text-black hover:text-black font-bold py-2.5 px-5 rounded border-none  hover:border-2', //White
+    'hover:bg-gray-100 bg-white text-black font-bold py-2.5 px-5 rounded', //White
   icon: 'py-2 px-2 rounded hover:bg-gray-200',
 };
 
