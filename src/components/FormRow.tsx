@@ -1,6 +1,7 @@
 import { FormRowType } from '../types/reusableTypes';
 
 function FormRowVertical({ label, error, children }: FormRowType) {
+  // console.log(children.props);
   return (
     <div className="flex flex-col gap-1 py-4">
       {label && (
