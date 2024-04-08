@@ -2,52 +2,92 @@ import { FormEvent, useState } from 'react';
 import { useLogin } from './useLogin';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { Link, useLocation } from 'react-router-dom';
+import { useSignup } from './useSignup';
+import LineText from '../../components/LineText';
+import toast from 'react-hot-toast';
+import FormRowVertical from '../../components/FormRow';
+import { useLoginGoogle } from './useLoginGoogle';
 
 function LoginForm() {
-  const { login, isPending } = useLogin();
+  const { pathname } = useLocation();
+  const isSignup = pathname === '/signup';
+  const { login, isLogging } = useLogin();
+  const { loginGoogle, isLogging: isLoggingGoogle } = useLoginGoogle();
+  const { signup, isPending } = useSignup();
   const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('123123');
-
-  if (isPending) return;
+  const [passwordConfirm, setPasswordConfirm] = useState('123123');
+  const isLoading = isLogging || isPending || isLoggingGoogle;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email || !password) return;
-    login({ email, password });
+
+    if (!email || !password)
+      return toast.error('Uneli ste neispravan mail ili lozinku!');
+
+    const userEmailPass = { email, password };
+    if (!isSignup) {
+      login(userEmailPass);
+    } else {
+      if (password !== passwordConfirm) toast.error('Unesite iste lozinke!');
+      else signup(userEmailPass);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Ime</label>
-      <Input
-        placeholder="marko@gmail.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label className="mt-2 block">Lozinka</label>
-      <Input
-        placeholder="lozinka"
-        value={password}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <FormRowVertical label="Ime:">
+        <Input
+          placeholder="ime@gmail.com"
+          value={email}
+          id="name"
+          disabled={isLoading}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Lozinka:">
+        <Input
+          placeholder="password"
+          value={password}
+          type="password"
+          id="password"
+          disabled={isLoading}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormRowVertical>
+      {isSignup && (
+        <FormRowVertical label="Potvrdi lozinku:">
+          <Input
+            placeholder="password"
+            value={passwordConfirm}
+            type="password"
+            id="passwordConfirm"
+            disabled={isLoading}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </FormRowVertical>
+      )}
       <input className="mt-4 inline-block" type="checkbox"></input> Ostani
       priljavjen/a
-      <div className="align-center flex flex-col items-center">
-        <div className="mt-4 w-full">
-          <Button type="submit" variation="primary" className="w-full">
-            Uloguj se
-          </Button>
-        </div>
-        <div className="mb-2 mt-2 flex items-center gap-4">
-          <span className="h-[2px] w-[228px] bg-gray-500"></span> ili
-          <span className="h-[2px] w-[228px] bg-gray-500"> </span>
-        </div>
+      <div className="mt-4 flex flex-col items-center">
+        <Button
+          type="submit"
+          variation="primary"
+          className="w-full"
+          isDisable={isLoading}
+        >
+          Prijavi se
+        </Button>
+        <LineText>ili</LineText>
         <Button
           variation="secondary"
-          className="mx-auto mt-2 flex w-full items-center justify-center gap-4 bg-neutral-200 hover:bg-neutral-300"
+          type="button"
+          className="mx-auto mt-2 flex w-full items-center justify-center gap-4"
+          isDisable={isLoading}
+          onClick={loginGoogle}
         >
-          Uloguj se sa googleom{' '}
+          Uloguj se preko googla
           <svg
             className="h-[32px] w-[32px]"
             xmlns="http://www.w3.org/2000/svg"
@@ -75,11 +115,23 @@ function LoginForm() {
             ></path>
           </svg>
         </Button>
+
         <p className="mt-8">
-          Potrebna vam je nalog?{' '}
-          <span className="text-blue-500">
-            <a href="signup">Napravite ga</a>
-          </span>
+          {!isSignup ? (
+            <>
+              Potrebna vam je nalog?
+              <span className="text-blue-500">
+                &nbsp;&nbsp;<Link to="/signup">Napravite nalog</Link>
+              </span>
+            </>
+          ) : (
+            <>
+              Imate postojeći nalog?
+              <span className="text-blue-500">
+                &nbsp;&nbsp;<Link to="/login">Logujte se</Link>
+              </span>
+            </>
+          )}
         </p>
       </div>
     </form>

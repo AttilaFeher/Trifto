@@ -6,6 +6,7 @@ export type ChatType = Database['public']['Tables']['chats']['Row'];
 export type ChatMessageType =
   Database['public']['Tables']['chat_messages']['Row'];
 export type ChatUsersType = Database['public']['Tables']['chat_users']['Row'];
+export type ProductsType = Database['public']['Tables']['products']['Row'];
 export type ProductsInsertType =
   Database['public']['Tables']['products']['Insert'];
 

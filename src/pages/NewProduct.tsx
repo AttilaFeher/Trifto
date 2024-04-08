@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import Input from '../components/Input';
+import Main from '../components/Main';
+import NewProductForm from '../features/clothes/NewProductForm';
 
 function NewProduct() {
-  const [value, setValue] = useState('');
   return (
-    <div className="mx-[320px]">
-      <Input placeholder="Attila Feher" value={value} setValue={setValue} />
-    </div>
+    <Main>
+      <NewProductForm />
+    </Main>
   );
 }
 

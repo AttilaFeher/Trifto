@@ -15,10 +15,10 @@ export function useChatSubscription(chatId: string) {
           queryKey: ['user', 'chats', chatId],
         }),
       );
+      console.log(subscription);
     };
 
     initializeSubscription();
-
     // Cleanup function
     return function () {
       if (subscription) {

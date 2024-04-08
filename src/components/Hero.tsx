@@ -3,6 +3,8 @@ import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import { useUser } from '../features/authentication/useUser';
 import Heading from './Heading';
+import { Link as LinkScroll } from 'react-scroll';
+import { FaAnglesDown } from 'react-icons/fa6';
 
 function Hero() {
   const { isAuthenticated } = useUser();
@@ -23,21 +25,26 @@ function Hero() {
           </p>
           <ButtonGroup>
             {isAuthenticated ? (
-              <ButtonGroup>
-                <Button variation="primary">
-                  <Link to="/newProduct">Prodaj nešto</Link>
-                </Button>
+              <>
                 <Button variation="secondary">
-                  <Link to="/">Kupi nešto</Link>
+                  <Link to="/products/new">Prodaj novo</Link>
                 </Button>
-              </ButtonGroup>
+                <LinkScroll to="productList" smooth={true} duration={300}>
+                  <Button
+                    variation="primary"
+                    className="flex items-center gap-2"
+                  >
+                    Kupi novo <FaAnglesDown />
+                  </Button>
+                </LinkScroll>
+              </>
             ) : (
               <>
                 <Button variation="secondary">
                   <Link to="/login">Prodaj nešto</Link>
                 </Button>
                 <Button variation="primary">
-                  <Link to="/signup">Kupi nešto</Link>
+                  <Link to="/login">Kupi nešto</Link>
                 </Button>
               </>
             )}
