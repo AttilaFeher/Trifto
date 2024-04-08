@@ -21,15 +21,15 @@ function Header() {
       {isAuthenticated ? (
         <div className="flex items-center gap-4">
           <Link to="products">
-            <FaHome className="h-[34px] w-[34px] cursor-pointer hover:text-green-300" />
+            <FaHome className="h-[34px] w-[34px] cursor-pointer hover:text-blue-500" />
           </Link>
           <Link to="chats">
-            <MdMail className="h-[34px] w-[34px] cursor-pointer hover:text-green-300" />
+            <MdMail className="h-[34px] w-[34px] cursor-pointer hover:text-blue-500" />
           </Link>
           {/* <BsFillHeartFill className="h-[28px] w-[28px] cursor-pointer hover:text-red-500" /> */}
           <Link to="products/new">
             {/* <Button variation="primary">Postavite oglas</Button> */}
-            <MdCreateNewFolder className="h-[34px] w-[34px] cursor-pointer hover:text-green-300" />
+            <MdCreateNewFolder className="h-[34px] w-[34px] cursor-pointer hover:text-blue-500" />
           </Link>
 
           {/* <div
