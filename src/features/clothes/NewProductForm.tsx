@@ -5,54 +5,53 @@ import Button from '../../components/Button';
 import { ProductsInsertType } from '../../types/collection';
 import { useCreateProduct } from './useCreateProduct';
 import { useUser } from '../authentication/useUser';
-import SelectOption from '../../components/SelectOption';
-import { categoryOptions } from '../../utils/constants';
+import {
+  CategoryOptionsType,
+  GenderOptionsType,
+  categoryOptions,
+  genderOptions,
+} from '../../utils/constants';
 import ReactSelect from 'react-select';
+import TextArea from '../../components/TextArea';
 
-const initialValues: ProductsInsertType = {
+type NewProductFormType = {
+  title: string;
+  category: CategoryOptionsType;
+  brand: string;
+  description: string;
+  gender: GenderOptionsType;
+  price: number;
+};
+
+const defaultValues: NewProductFormType = {
   title: '',
-  category: 't-shirt',
+  category: categoryOptions[0],
   brand: '',
   description: '',
-  gender: 'unisex',
+  gender: genderOptions[0],
   price: 1,
 };
-type OptionType = {
-  value: string;
-  label: string;
-};
-
-const categoryOptionss: OptionType[] = [
-  { value: 'unisex', label: 'Univerzalno' },
-  { value: 'men', label: 'Muško' },
-  { value: 'women', label: 'Žensko' },
-  { value: 'children-boy', label: 'Dečaci' },
-  { value: 'children-girl', label: 'Devojčice' },
-];
-const groupedOptions = [
-  {
-    label: 'Gender',
-    options: categoryOptionss.map((option) => ({
-      label: option.label,
-      value: option.value,
-    })),
-  },
-];
 
 function NewProductForm() {
   const { userId } = useUser();
   const { isCreating, createProduct } = useCreateProduct();
   const {
-    register,
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm({
-    defaultValues: { ...initialValues, user_id: userId },
+    defaultValues,
   });
 
-  function onSubmit(data: ProductsInsertType) {
-    console.log(data);
+  function onSubmit(data: NewProductFormType) {
+    const newProduct: ProductsInsertType = {
+      ...data,
+      gender: data.gender.value,
+      category: data.category.value,
+      user_id: userId,
+    };
+    createProduct(newProduct, { onSuccess: () => reset() });
   }
 
   return (
@@ -81,9 +80,41 @@ function NewProductForm() {
             <Input
               placeholder="1000"
               id="brand"
-              type="text"
               disabled={isCreating}
               {...field}
+            />
+          )}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Deskripcija" error={errors.description?.message}>
+        <Controller
+          name="description"
+          control={control}
+          rules={{
+            required: 'Ovo polje je obavezno!',
+          }}
+          render={({ field }) => (
+            <TextArea
+              placeholder="Majica je nova crne boje, velicine M..."
+              id="description"
+              disabled={isCreating}
+              {...field}
+            />
+          )}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Kategorija" error={errors.category?.message}>
+        <Controller
+          name="category"
+          control={control}
+          rules={{
+            required: 'Ovo polje je obavezno!',
+          }}
+          render={({ field }) => (
+            <ReactSelect
+              options={categoryOptions}
+              {...field}
+              placeholder="Majice"
             />
           )}
         />
@@ -95,20 +126,22 @@ function NewProductForm() {
           rules={{
             required: 'Ovo polje je obavezno!',
           }}
-          render={({ field }) => {
-            console.log(field);
-            return <ReactSelect {...field} options={categoryOptions} />;
-            // return <SelectOption options={categoryOptions} {...field} />;
-          }}
+          render={({ field }) => (
+            <ReactSelect
+              options={genderOptions}
+              {...field}
+              placeholder="Univerzalno"
+            />
+          )}
         />
       </FormRowVertical>
-      <FormRowVertical label="Cena" error={errors.price?.message}>
+      <FormRowVertical label="Cena (DIN)" error={errors.price?.message}>
         <Controller
           name="price"
           control={control}
           rules={{
             required: 'Ovo polje je obavezno!',
-            min: { value: 1, message: 'Enter a positive number.' },
+            min: { value: 1, message: 'Unesite pozitivan broj.' },
           }}
           render={({ field }) => (
             <Input

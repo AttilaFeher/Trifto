@@ -1,12 +1,12 @@
 import { ChangeEvent, forwardRef } from 'react';
-import { inputVariation } from '../styles/inputStyles';
+import { InputVariationType, inputVariation } from '../styles/inputVariation';
 
 type InputType = {
   placeholder: string;
   value?: string | number | null;
   type?: 'text' | 'password' | 'number';
   id?: string;
-  variation?: 'primary' | 'secondary';
+  variation?: InputVariationType;
   disabled?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };

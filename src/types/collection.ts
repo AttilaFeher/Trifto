@@ -18,4 +18,5 @@ export type ChatMessageInfoViewType =
   Database['public']['Views']['chat_messages_info_view']['Row'];
 
 // Enums
+export type CategoryType = ProductsInsertType['category'];
 export type GenderType = ProductsInsertType['gender'];
