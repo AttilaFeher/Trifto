@@ -9,11 +9,7 @@ export async function getProducts() {
   return { data, error };
 }
 
-type CreateProductType = {
-  product: ProductsInsertType;
-};
-
-export async function createProduct({ product }: CreateProductType) {
+export async function createProduct(product: ProductsInsertType) {
   const { data, error } = await supabase
     .from('products')
     .insert([product])

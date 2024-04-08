@@ -1,42 +1,40 @@
-import { ChangeEvent } from 'react';
-
-const inputVariation = {
-  primary:
-    'focus:shadow-outline w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-6 leading-tight text-gray-800 transition-colors hover:border-gray-400 focus:border-gray-600 focus:outline-none focus:ring-gray-600',
-  secondary:
-    'outline-none w-full appearance-none border-none leading-tight text-gray-800 ',
-};
+import { ChangeEvent, forwardRef } from 'react';
+import { InputVariationType, inputVariation } from '../styles/inputVariation';
 
 type InputType = {
   placeholder: string;
-  value: string;
-  type?: 'text' | 'password';
+  value?: string | number | null;
+  type?: 'text' | 'password' | 'number';
   id?: string;
-  variation?: 'primary' | 'secondary';
+  variation?: InputVariationType;
   disabled?: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-function Input({
-  placeholder,
-  value,
-  type = 'text',
-  id,
-  variation = 'primary',
-  disabled = false,
-  onChange,
-}: InputType) {
+function Input(
+  {
+    placeholder,
+    value,
+    type = 'text',
+    id,
+    variation = 'primary',
+    disabled = false,
+    onChange,
+  }: InputType,
+  ref: React.Ref<HTMLInputElement>,
+) {
   return (
     <input
-      className={inputVariation[variation]}
-      type={type}
       placeholder={placeholder}
-      value={value}
+      value={value || ''}
+      type={type}
       id={id}
+      className={inputVariation[variation]}
       disabled={disabled}
       onChange={onChange}
+      ref={ref}
     />
   );
 }
 
-export default Input;
+export default forwardRef<HTMLInputElement, InputType>(Input);

@@ -259,7 +259,7 @@ export type Database = {
         | "boots"
         | "shoes"
         | "sneakers"
-        | "sport shoes"
+        | "sport-shoes"
       gender: "unisex" | "men" | "women" | "children-boy" | "children-girl"
     }
     CompositeTypes: {

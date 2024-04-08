@@ -7,7 +7,6 @@ export function useCreateProduct() {
 
   const { mutate: createProduct, isPending: isCreating } = useMutation({
     mutationFn: apiCreateProduct,
-
     onSuccess: () => {
       toast.success('Uspešno kreiran novi produkt!');
       queryClient.invalidateQueries({ queryKey: ['myProducts'] });
