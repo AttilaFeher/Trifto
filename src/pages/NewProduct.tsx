@@ -3,9 +3,11 @@ import NewProductForm from '../features/clothes/NewProductForm';
 
 function NewProduct() {
   return (
-    <Main>
-      <NewProductForm />
-    </Main>
+    <div className="mx-[320px]">
+      <Main>
+        <NewProductForm />
+      </Main>
+    </div>
   );
 }
 

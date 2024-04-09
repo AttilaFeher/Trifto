@@ -9,7 +9,16 @@ function ProductsList() {
 
   return (
     <Element name="productList">
-      <ul>
+      <h1 className="mx-[320px] mb-4 mt-8 text-xl font-bold">
+        Najnoviji proizvodi
+      </h1>
+      <ul className="mx-[320px] grid grid-cols-4 gap-4">
+        {products?.data.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+        {products?.data.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
         {products?.data.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}

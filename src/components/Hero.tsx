@@ -44,7 +44,7 @@ function Hero() {
                   <Link to="/login">Prodaj nešto</Link>
                 </Button>
                 <Button variation="primary">
-                  <Link to="/signup">Kupi nešto</Link>
+                  <Link to="/login">Kupi nešto</Link>
                 </Button>
               </>
             )}

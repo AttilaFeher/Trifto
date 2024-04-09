@@ -63,7 +63,7 @@ function NewProductForm() {
           rules={{ required: 'Ovo polje je obavezno!' }}
           render={({ field }) => (
             <Input
-              placeholder="Nike"
+              placeholder="Beli Nike Tracksuit"
               id="title"
               disabled={isCreating}
               {...field}
@@ -78,7 +78,7 @@ function NewProductForm() {
           rules={{ required: 'Ovo polje je obavezno!' }}
           render={({ field }) => (
             <Input
-              placeholder="1000"
+              placeholder="Nike"
               id="brand"
               disabled={isCreating}
               {...field}
