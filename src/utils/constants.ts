@@ -31,22 +31,3 @@ export const categoryOptions: CategoryOptionsType[] = [
   { value: 'sneakers', label: 'Patike' },
   { value: 'sport-shoes', label: 'Sportske patike' },
 ];
-
-// const categoryOptionsValues: Record<
-//   Exclude<GenderType, null | undefined>,
-//   string
-// > = {
-//   unisex: 'Univerzalno',
-//   men: 'Muško',
-//   women: 'Žensko',
-//   'children-boy': 'Dečaci',
-//   'children-girl': 'Devojčice',
-// };
-
-// export type CategoryOptionsType = Array<
-//   [Exclude<GenderType, null | undefined>, string]
-// >;
-
-// export const categoryOptions = Object.entries(
-//   categoryOptionsValues,
-// ) as CategoryOptionsType;

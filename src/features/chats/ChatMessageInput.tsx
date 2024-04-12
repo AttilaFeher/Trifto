@@ -6,11 +6,13 @@ import { useCreateChatMessage } from './useCreateChatMessage';
 import { useUserInfo } from '../authentication/useUserInfo';
 import { useParams } from 'react-router-dom';
 import { ChatMessageType } from '../../types/collection';
+import { useUser } from '../authentication/useUser';
 
 function ChatMessageInput() {
+  const { userId } = useUser() as { userId: string };
   const { chatId } = useParams() as { chatId: string };
   const { isCreating, createChatMessage } = useCreateChatMessage(chatId);
-  const { isLoading: isLoadingUser, userInfo } = useUserInfo();
+  const { isLoading: isLoadingUser, userInfo } = useUserInfo({ userId });
   const [message, setMessage] = useState('');
 
   if (isLoadingUser) return null;

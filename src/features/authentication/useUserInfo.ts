@@ -1,12 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { getUserInfo } from '../../services/apiAuth';
-import { useUser } from './useUser';
 
-export function useUserInfo() {
-  const { userId } = useUser() as { userId: string };
-
+export function useUserInfo({ userId }: { userId: string }) {
   const { isLoading, data: userInfo } = useQuery({
-    queryKey: ['userInfo'],
+    queryKey: ['userInfo', userId],
     queryFn: () => getUserInfo(userId),
   });
 

@@ -7,9 +7,9 @@ import ChatMessageName from './ChatMessageName';
 
 function ChatMessages() {
   const { chatId } = useParams() as { chatId: string };
+  console.log(chatId);
   useChatSubscription(chatId);
   const { isLoading, chatMessagesInfo } = useChatMessagesInfo(chatId);
-
   if (!chatMessagesInfo || isLoading) return null;
 
   return (

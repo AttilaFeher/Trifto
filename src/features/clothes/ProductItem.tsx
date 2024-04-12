@@ -1,10 +1,15 @@
+import { Link } from 'react-router-dom';
 import { ProductsType } from '../../types/collection';
+import { useUserInfo } from '../authentication/useUserInfo';
 
 type ProductItemType = {
   product: ProductsType;
 };
 
 function ProductItem({ product }: ProductItemType) {
+  const { price, brand, id, user_id } = product;
+  const { userInfo } = useUserInfo({ userId: user_id });
+
   return (
     <div className="overflow-hidden bg-white shadow-md">
       <img
@@ -14,9 +19,12 @@ function ProductItem({ product }: ProductItemType) {
       />
 
       <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold">{product.brand}</h3>
-        <p className="mb-2 text-gray-600">M</p>{' '}
-        <p className="font-semibold text-gray-900">2500DIN</p>{' '}
+        {userInfo?.nickname}
+        <Link to={id.toString()}>
+          <h3 className="mb-2 text-lg font-semibold">{brand}</h3>
+        </Link>
+        <p className="mb-2 text-gray-600">M</p>
+        <p className="font-semibold text-gray-900">{price}DIN</p>
       </div>
     </div>
   );

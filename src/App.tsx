@@ -10,6 +10,8 @@ import Products from './pages/Products';
 import NewProduct from './pages/NewProduct';
 import ChatMessages from './features/chats/ChatMessages';
 import Login from './pages/Login';
+import Product from './pages/Product';
+import NewChat from './features/chats/NewChat';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,13 +39,16 @@ function App() {
               <Route index element={<Navigate replace to="products" />} />
               <Route path="chats" element={<Chats />}>
                 <Route path=":chatId" element={<ChatMessages />} />
+                <Route path="new/:userId" element={<NewChat />} />
               </Route>
               <Route path="products/new" element={<NewProduct />} />
             </Route>
             <Route element={<AppLayout />}>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Login />} />
-              <Route path="products" element={<Products />} />
+              <Route path="products" element={<Products />}>
+                <Route path=":productId" element={<Product />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

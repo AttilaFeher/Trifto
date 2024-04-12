@@ -16,12 +16,12 @@ function ProductsList() {
         {products?.data.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
-        {products?.data.map((product) => (
+        {/* {products?.data.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
         {products?.data.map((product) => (
           <ProductItem key={product.id} product={product} />
-        ))}
+        ))} */}
         {/* <div>
           <li>aawd</li>
           <li>aawd</li>
