@@ -9,52 +9,14 @@ function ProductsList() {
 
   return (
     <Element name="productList">
-      <h1 className="mx-[320px] mb-4 mt-8 text-xl font-bold">
-        Najnoviji proizvodi
-      </h1>
-      <ul className="mx-[320px] grid grid-cols-4 gap-4">
-        {products?.data.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-        {products?.data.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-        {products?.data.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-        {/* <div>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-          <li>aawd</li>
-        </div> */}
-      </ul>
+      <div className="m-auto max-w-[1200px]">
+        <h1 className="mb-4 mt-8 text-2xl font-bold">Najnoviji proizvodi</h1>
+        <ul className="grid cursor-pointer grid-cols-4 gap-4">
+          {products?.data.map((product) => (
+            <ProductItem key={product.id} product={product} />
+          ))}
+        </ul>
+      </div>
     </Element>
   );
 }

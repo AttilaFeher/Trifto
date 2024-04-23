@@ -6,17 +6,21 @@ type ProductItemType = {
 
 function ProductItem({ product }: ProductItemType) {
   return (
-    <div className="overflow-hidden bg-white shadow-md">
+    <div className="transform overflow-hidden rounded-lg bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
       <img
         src="../public/jordan1.jpg"
-        alt="${product.ime}"
-        className="h-64 w-full object-cover"
+        className="h-64 w-full rounded-t-lg object-cover"
       />
-
       <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold">{product.brand}</h3>
-        <p className="mb-2 text-gray-600">M</p>{' '}
-        <p className="font-semibold text-gray-900">2500DIN</p>{' '}
+        <div className="absolute left-[225px] top-[18px] rounded-full bg-black bg-opacity-25 p-3 font-medium text-white">
+          NS
+        </div>
+        <h3 className="mb-1 text-lg font-semibold">{product.title} </h3>
+        <p className=" text-gray-600">{product.description}</p>
+        <div className="flex- mt-4 flex justify-between">
+          <p className="font-medium text-gray-500">{product.price} DIN</p>
+          <p className=" font-medium text-gray-500">M</p>
+        </div>
       </div>
     </div>
   );
