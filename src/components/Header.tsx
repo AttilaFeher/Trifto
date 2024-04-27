@@ -20,9 +20,6 @@ function Header() {
       <SearchBar />
       {isAuthenticated ? (
         <div className="flex items-center gap-4">
-          <Link to="products">
-            <FaHome className="h-[34px] w-[34px] cursor-pointer hover:text-blue-500" />
-          </Link>
           <Link to="chats">
             <MdMail className="h-[34px] w-[34px] cursor-pointer hover:text-blue-500" />
           </Link>
