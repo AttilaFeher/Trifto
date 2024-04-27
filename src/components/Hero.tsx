@@ -43,9 +43,14 @@ function Hero() {
                 <Button variation="secondary">
                   <Link to="/login">Prodaj nešto</Link>
                 </Button>
-                <Button variation="primary">
-                  <Link to="/login">Kupi nešto</Link>
-                </Button>
+                <LinkScroll to="productList" smooth={true} duration={300}>
+                  <Button
+                    variation="primary"
+                    className="flex items-center gap-2"
+                  >
+                    Kupi novo <FaAnglesDown />
+                  </Button>
+                </LinkScroll>
               </>
             )}
           </ButtonGroup>
