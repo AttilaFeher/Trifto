@@ -18,7 +18,18 @@ function ProductDetail() {
     chats?.data.find((chat) =>
       chat.user_ids?.find((chatUser) => chatUser === product.user_id),
     )?.chat_id || `new/${product.user_id}`;
-
+  // console.log(chats);
+  // console.log(
+  //   chats?.data.find((chat) =>
+  //     chat.user_ids?.find((chatUser) => chatUser === product.user_id),
+  //   ),
+  // );
+  // console.log(
+  //   chats?.data.find((chat) =>
+  //     chat.user_ids?.find((chatUser) => chatUser === product.user_id),
+  //   )?.chat_id || `new/${product.user_id}`,
+  // );
+  // console.log(chatId);
   const {
     user_id,
     title,

@@ -1,6 +1,6 @@
 import { IoSend } from 'react-icons/io5';
 import Input from '../../components/Input';
-import InputBarProvider from '../../components/InputBarProvider';
+import InputBarProvider from '../../context/InputBarProvider';
 import { useState } from 'react';
 import { useCreateChatMessage } from './useCreateChatMessage';
 import { useUserInfo } from '../authentication/useUserInfo';

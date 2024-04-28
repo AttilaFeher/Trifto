@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { ChildrenType } from '../types/reusableTypes';
-import Button from './Button';
+import Button from '../components/Button';
 
 const InputBarContext = createContext(null);
 

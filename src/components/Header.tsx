@@ -13,7 +13,7 @@ import { MdCreateNewFolder, MdMail } from 'react-icons/md';
 
 function Header() {
   const { isAuthenticated } = useUser();
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
   return (
     <header className="mx-8 flex h-24 items-center justify-between gap-7 px-4">
       <Logo />

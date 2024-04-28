@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Input from './Input';
-import InputBarProvider from './InputBarProvider';
+import InputBarProvider from '../context/InputBarProvider';
 
 function SearchBar() {
   const [searchText, setSearchText] = useState('');

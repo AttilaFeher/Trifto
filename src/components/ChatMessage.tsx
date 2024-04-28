@@ -15,9 +15,9 @@ function ChatMessage({ message }: ChatMessageType) {
   const createdAtDate = new Date(message.created_at as string);
   const hour = createdAtDate.getHours();
   const minutes = createdAtDate.getMinutes();
-  console.log(message.user_id);
-  console.log(userId);
-  console.log(message.user_id === userId);
+  // console.log(message.user_id);
+  // console.log(userId);
+  // console.log(message.user_id === userId);
   return (
     <div className={`${message.user_id === userId ? 'ml-24' : 'mr-24'}`}>
       <div
