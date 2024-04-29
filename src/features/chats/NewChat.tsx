@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useUserInfo } from '../authentication/useUserInfo';
-import ChatMessageInput from './ChatMessageInput';
 import ChatMemberNew from './ChatMemberNew';
+import NewChatInput from './NewChatInput';
 
 function NewChat() {
   const { userId } = useParams() as { userId: string };
@@ -18,7 +18,7 @@ function NewChat() {
           <ChatMessage key={message.created_at} message={message} />
         ))} */}
       </div>
-      <ChatMessageInput />
+      <NewChatInput />
     </div>
   );
 }

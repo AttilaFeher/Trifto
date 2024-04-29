@@ -1,6 +1,6 @@
 import {
   ChatInsertType,
-  ChatMessageType,
+  ChatMessageInsertType,
   ChatUsersInsertType,
 } from '../types/collection';
 import supabase from './supabase';
@@ -25,17 +25,26 @@ export async function getChatMessagesInfo({ chatId }: { chatId: string }) {
   return { data, error };
 }
 
-type CreateChatMessageType = {
-  messageDetail: ChatMessageType;
-};
+// type CreateChatMessageType = {
+//   messageDetail: ChatMessageType;
+// };
 
-export async function createChatMessage({
-  messageDetail,
-}: CreateChatMessageType) {
-  console.log(messageDetail);
+// export async function createChatMessage({
+//   messageDetail,
+// }: CreateChatMessageType) {
+//   console.log(messageDetail);
+//   const { data, error } = await supabase
+//     .from('chat_messages')
+//     .insert([messageDetail])
+//     .select();
+
+//   return { data, error };
+// }
+export async function createChatMessage(newMessage: ChatMessageInsertType) {
+  console.log(newMessage);
   const { data, error } = await supabase
     .from('chat_messages')
-    .insert([messageDetail])
+    .insert([newMessage])
     .select();
 
   return { data, error };
@@ -55,11 +64,7 @@ export async function chatSubscription(resetQuery: () => Promise<void>) {
 }
 
 //////////////////////
-type CreateChatType = {
-  newChat: ChatInsertType;
-  user_id: number;
-};
-export async function createChat({ newChat, user_id }: CreateChatType) {
+export async function createChat(newChat: ChatInsertType) {
   const { data: chat, error } = await supabase
     .from('chats')
     .insert([newChat])
@@ -71,12 +76,7 @@ export async function createChat({ newChat, user_id }: CreateChatType) {
     throw new Error('Došlo je do greške pilikom kreiranja četa.');
   }
 
-  const { data: createdChat } = await addChatUser({
-    chat_id: chat.id,
-    user_id,
-  });
-  console.log(createdChat);
-  return { createdChat };
+  return { chat };
 }
 
 export async function addChatUser({ chat_id, user_id }: ChatUsersInsertType) {

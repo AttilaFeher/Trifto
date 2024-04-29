@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useCreateChatMessage } from './useCreateChatMessage';
 import { useUserInfo } from '../authentication/useUserInfo';
 import { useParams } from 'react-router-dom';
-import { ChatMessageType } from '../../types/collection';
 import { useUser } from '../authentication/useUser';
 
 function ChatMessageInput() {
@@ -20,12 +19,7 @@ function ChatMessageInput() {
   function handleMessage() {
     if (!userInfo?.id || !message) return;
 
-    const newMessage = {
-      chat_id: +chatId,
-      user_id: userInfo.id,
-      message,
-    } as ChatMessageType;
-    createChatMessage(newMessage);
+    createChatMessage({ message, chat_id: +chatId, user_id: userInfo.id });
     setMessage('');
   }
 

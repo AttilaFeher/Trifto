@@ -17,7 +17,7 @@ function ChatItem({ chat }: ChatItemType) {
         className={`mb-2 flex items-center gap-4 rounded p-2 font-bold hover:ease-in ${+chatId === chat.chat_id ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
       >
         <img
-          src="../public/default.jpg"
+          src="../../public/default.jpg"
           className="h-14 w-14 rounded-full"
           alt="Girl"
         />

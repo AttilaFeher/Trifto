@@ -1,18 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Heading from '../../components/Heading';
 import { useProduct } from './useProduct';
 import { useChats } from '../chats/useChats';
-import { useCreateChat } from '../chats/useCreateChat';
 
 function ProductDetail() {
   const { product } = useProduct();
   const { chats, isLoading } = useChats();
   const navigate = useNavigate();
-  const { isCreating, createChat } = useCreateChat();
 
-  if (!product || isLoading || isCreating)
-    return <Heading type="h2">No product</Heading>;
+  if (!product || isLoading) return <Heading type="h2">No product</Heading>;
 
   const chatId =
     chats?.data.find((chat) =>
