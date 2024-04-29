@@ -23,7 +23,8 @@ function NewChatInput() {
   const { createChat, isCreating } = useNewChat();
   const [message, setMessage] = useState('');
 
-  function handleMessage() {
+  function handleMessage(e) {
+    e.preventDefault();
     if (!message || !userId1 || !userId2) return null;
     createChat(
       { message, userId1, userId2 },
