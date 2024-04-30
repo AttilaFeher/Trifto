@@ -2,7 +2,7 @@ import ChatItem from './ChatItem';
 import { useChats } from './useChats';
 
 function AllChats() {
-  const { isLoading, chats } = useChats();
+  const { isLoading, chats } = useChats(true);
 
   if (!chats?.data || isLoading) return null;
 

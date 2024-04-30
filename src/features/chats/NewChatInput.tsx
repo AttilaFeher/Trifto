@@ -23,7 +23,7 @@ function NewChatInput() {
   const { createChat, isCreating } = useNewChat();
   const [message, setMessage] = useState('');
 
-  function handleMessage(e) {
+  function handleMessage(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!message || !userId1 || !userId2) return null;
     createChat(
@@ -46,7 +46,6 @@ function NewChatInput() {
           onChange={(e) => setMessage(e.target.value)}
         />
         <InputBarProvider.Icon
-          onClick={handleMessage}
           isDisable={isLoading1 || isLoading2 || isCreating}
         >
           <IoSend />

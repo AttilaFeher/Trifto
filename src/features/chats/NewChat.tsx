@@ -13,11 +13,6 @@ function NewChat() {
   return (
     <div className="relative h-full basis-full">
       <ChatMemberNew />
-      <div className="h-full overflow-y-auto pb-28 pt-20 ">
-        {/* {chatMessagesInfo.data?.map((message) => (
-          <ChatMessage key={message.created_at} message={message} />
-        ))} */}
-      </div>
       <NewChatInput />
     </div>
   );

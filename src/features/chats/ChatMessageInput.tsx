@@ -1,7 +1,7 @@
 import { IoSend } from 'react-icons/io5';
 import Input from '../../components/Input';
 import InputBarProvider from '../../context/InputBarProvider';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useCreateChatMessage } from './useCreateChatMessage';
 import { useUserInfo } from '../authentication/useUserInfo';
 import { useParams } from 'react-router-dom';
@@ -16,11 +16,14 @@ function ChatMessageInput() {
 
   if (isLoadingUser) return null;
 
-  function handleMessage() {
-    if (!userInfo?.id || !message) return;
+  function handleMessage(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!userInfo?.id || !message) return null;
 
-    createChatMessage({ message, chat_id: +chatId, user_id: userInfo.id });
-    setMessage('');
+    createChatMessage(
+      { message, chat_id: +chatId, user_id: userInfo.id },
+      { onSuccess: () => setMessage('') },
+    );
   }
 
   return (
@@ -32,7 +35,7 @@ function ChatMessageInput() {
           variation="secondary"
           onChange={(e) => setMessage(e.target.value)}
         />
-        <InputBarProvider.Icon onClick={handleMessage} isDisable={isCreating}>
+        <InputBarProvider.Icon isDisable={isCreating}>
           <IoSend />
         </InputBarProvider.Icon>
       </InputBarProvider>
