@@ -1,44 +1,35 @@
 import { IoSend } from 'react-icons/io5';
-import Input from '../../components/Input';
-import InputBarProvider from '../../context/InputBarProvider';
-import { FormEvent, useState } from 'react';
 import { useCreateChatMessage } from './useCreateChatMessage';
-import { useUserInfo } from '../authentication/useUserInfo';
 import { useParams } from 'react-router-dom';
-import { useUser } from '../authentication/useUser';
+import {
+  CallBack,
+  InputBarProvider,
+  useInputBar,
+} from '../../context/InputBarProvider';
 
 function ChatMessageInput() {
-  const { userId } = useUser() as { userId: string };
   const { chatId } = useParams() as { chatId: string };
   const { isCreating, createChatMessage } = useCreateChatMessage(chatId);
-  const { isLoading: isLoadingUser, userInfo } = useUserInfo({ userId });
-  const [message, setMessage] = useState('');
+  const { clearInput } = useInputBar();
 
-  if (isLoadingUser) return null;
-
-  function handleMessage(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!userInfo?.id || !message) return null;
-
-    createChatMessage(
-      { message, chat_id: +chatId, user_id: userInfo.id },
-      { onSuccess: () => setMessage('') },
-    );
-  }
+  const createMessage: (userId2: number) => CallBack['callBack'] = function (
+    chatId,
+  ) {
+    return ({ message, user_id }) =>
+      createChatMessage(
+        { message, chat_id: chatId, user_id },
+        { onSuccess: clearInput },
+      );
+  };
 
   return (
     <div className="absolute bottom-0 left-0 right-0 z-10 bg-white pt-8">
-      <InputBarProvider onSubmit={handleMessage}>
-        <Input
-          placeholder="Poruka..."
-          value={message}
-          variation="secondary"
-          onChange={(e) => setMessage(e.target.value)}
-        />
+      <InputBarProvider.Form callBack={createMessage(+chatId)}>
+        <InputBarProvider.InputHolder isDisabled={isCreating} />
         <InputBarProvider.Icon isDisable={isCreating}>
           <IoSend />
         </InputBarProvider.Icon>
-      </InputBarProvider>
+      </InputBarProvider.Form>
     </div>
   );
 }

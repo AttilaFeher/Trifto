@@ -17,7 +17,7 @@ function Header() {
   return (
     <header className="mx-8 flex h-24 items-center justify-between gap-7 px-4">
       <Logo />
-      <SearchBar />
+      {/* <SearchBar /> */}
       {isAuthenticated ? (
         <div className="flex items-center gap-4">
           <Link to="chats">

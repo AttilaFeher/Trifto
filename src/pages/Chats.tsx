@@ -7,7 +7,10 @@ function Chats() {
     <Main>
       <div className="chats flex border-t-2 border-gray-400 pb-6">
         <AllChats />
-        <Outlet />
+
+        <div className="relative h-full basis-full">
+          <Outlet />
+        </div>
       </div>
     </Main>
   );

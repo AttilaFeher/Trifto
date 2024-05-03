@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ChatMessage from '../../components/ChatMessage';
 import ChatMessageInput from './ChatMessageInput';
 import ChatMembersCurrent from './ChatMembersCurrent';
+import { InputBarProvider } from '../../context/InputBarProvider';
 
 function ChatMessages() {
   const { chatId } = useParams() as { chatId: string };
@@ -20,7 +21,10 @@ function ChatMessages() {
           <ChatMessage key={message.created_at} message={message} />
         ))}
       </div>
-      <ChatMessageInput />
+
+      <InputBarProvider>
+        <ChatMessageInput />
+      </InputBarProvider>
     </div>
   );
 }

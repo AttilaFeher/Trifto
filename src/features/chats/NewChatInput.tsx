@@ -1,56 +1,31 @@
 import { IoSend } from 'react-icons/io5';
-import Input from '../../components/Input';
-import InputBarProvider from '../../context/InputBarProvider';
-import { FormEvent, useState } from 'react';
-import { useUser } from '../authentication/useUser';
 import { useNewChat } from './useNewChat';
-import { useUserInfo } from '../authentication/useUserInfo';
-import { useParams } from 'react-router-dom';
+import {
+  CallBack,
+  InputBarProvider,
+  useInputBar,
+} from '../../context/InputBarProvider';
+import { UserType } from '../../types/collection';
 
-function NewChatInput() {
-  const { userId: userId1Def } = useUser() as { userId: string };
-  const { userId: userId2Def } = useParams() as { userId: string };
-  const { userInfo: { id: userId1 } = {}, isLoading: isLoading1 } = useUserInfo(
-    {
-      userId: userId1Def,
-    },
-  );
-  const { userInfo: { id: userId2 } = {}, isLoading: isLoading2 } = useUserInfo(
-    {
-      userId: userId2Def,
-    },
-  );
+function NewChatInput({ userId2 }: { userId2: UserType['id'] }) {
   const { createChat, isCreating } = useNewChat();
-  const [message, setMessage] = useState('');
+  const { clearInput } = useInputBar();
 
-  function handleMessage(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!message || !userId1 || !userId2) return null;
-    createChat(
-      { message, userId1, userId2 },
-      {
-        onSuccess: () => {
-          setMessage('');
-        },
-      },
-    );
-  }
+  const handleMessage: (userId2: number) => CallBack['callBack'] = function (
+    userId2,
+  ) {
+    return ({ message, user_id: userId1 }) =>
+      createChat({ message, userId1, userId2 }, { onSuccess: clearInput });
+  };
 
   return (
     <div className="absolute bottom-0 left-0 right-0 z-10 bg-white pt-8">
-      <InputBarProvider onSubmit={handleMessage}>
-        <Input
-          placeholder="Poruka..."
-          value={message}
-          variation="secondary"
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <InputBarProvider.Icon
-          isDisable={isLoading1 || isLoading2 || isCreating}
-        >
+      <InputBarProvider.Form callBack={handleMessage(userId2)}>
+        <InputBarProvider.InputHolder isDisabled={isCreating} />
+        <InputBarProvider.Icon isDisable={isCreating}>
           <IoSend />
         </InputBarProvider.Icon>
-      </InputBarProvider>
+      </InputBarProvider.Form>
     </div>
   );
 }
