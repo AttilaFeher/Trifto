@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Input from './Input';
-import InputBarProvider from '../context/InputBarProvider';
+import Form from './Form';
+import Button from './Button';
 
 function SearchBar() {
   const [searchText, setSearchText] = useState('');
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log(searchText);
+  }
+
   return (
     <div className="grow">
-      <InputBarProvider>
-        <InputBarProvider.Icon onClick={() => {}}>
+      <Form onSubmit={handleSubmit}>
+        <Button type="submit" variation="icon" isDisable={false}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-gray-400 hover:text-gray-500"
@@ -23,16 +29,20 @@ function SearchBar() {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
-        </InputBarProvider.Icon>
-
+        </Button>
         <Input
           placeholder="Pretraga..."
           value={searchText}
           variation="secondary"
+          disabled={false}
           onChange={(e) => setSearchText(e.target.value)}
         />
-
-        <InputBarProvider.Icon onClick={() => setSearchText('')}>
+        <Button
+          variation="icon"
+          type="button"
+          isDisable={false}
+          onClick={() => setSearchText('')}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-gray-400 hover:text-gray-500"
@@ -47,8 +57,8 @@ function SearchBar() {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </InputBarProvider.Icon>
-      </InputBarProvider>
+        </Button>
+      </Form>
     </div>
   );
 }
